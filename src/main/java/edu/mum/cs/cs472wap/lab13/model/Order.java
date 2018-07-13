@@ -5,7 +5,6 @@ public class Order {
     private Integer id;
     private User user;
     private ShoppingCart shoppingCart;
-    private Double totalPrice;
     private Address shippingAddress;
     private Address billingAddress;
     private Payment payment;
@@ -33,14 +32,6 @@ public class Order {
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
-    }
-
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public Address getShippingAddress() {

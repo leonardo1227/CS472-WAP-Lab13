@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(filterName = "authenticationFilter",
-            urlPatterns = "/checkout")
+            urlPatterns = {"/checkout","/confirmationCheckout"})
 public class AuthenticationFilter implements Filter {
 
     @Override

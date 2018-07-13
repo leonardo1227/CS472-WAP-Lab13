@@ -5,12 +5,18 @@ public class ShoppingCartItem {
     private Integer id;
     private Product product;
     private Integer quantity;
+    private Double totalPrice;
     private ShoppingCart shoppingCart;
+
+    public ShoppingCartItem(Integer id) {
+        this.id = id;
+    }
 
     public ShoppingCartItem(Integer id, Product product, Integer quantity, ShoppingCart shoppingCart) {
         this.id = id;
         this.product = product;
         this.quantity = quantity;
+        this.totalPrice = this.product.getPrice()*this.getQuantity();
         this.shoppingCart = shoppingCart;
     }
 
@@ -36,6 +42,14 @@ public class ShoppingCartItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public ShoppingCart getShoppingCart() {
