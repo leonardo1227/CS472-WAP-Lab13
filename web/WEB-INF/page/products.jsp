@@ -10,7 +10,8 @@
 <html>
 <head>
     <link href="<c:url value='/resource/css/styles.css'/>" rel="stylesheet"/>
-    <!--<script src="<c:url value='/resource/js/script.js'/>" type="text/javascript"/>-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="<c:url value='/resource/js/script.js'/>" type="text/javascript"></script>
     <title>Products</title>
 </head>
 <body>
