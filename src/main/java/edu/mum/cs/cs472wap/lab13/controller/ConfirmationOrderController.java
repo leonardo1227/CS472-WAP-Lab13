@@ -35,11 +35,6 @@ public class ConfirmationOrderController extends HttpServlet {
                 req.getParameter("billingState"),
                 req.getParameter("billingZipcode"));
 
-        /*Payment payment = new Payment(req.getParameter("cardNumber"),
-                req.getParameter("cardCVNumber"),
-                req.getParameter("cardDueDate"),
-                req.getParameter("cardHolderName"),
-                req.getParameter("cardType"));*/
         Payment payment = new Payment(req.getParameter("cardNumber"),
                 req.getParameter("cardDueDate"),
                 req.getParameter("cardCVC"),
@@ -53,7 +48,6 @@ public class ConfirmationOrderController extends HttpServlet {
         DataBase.orders.add(order);
         session.setAttribute("order",order);
         session.removeAttribute("shoppingCart");
-
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/page/confirmationOrder.jsp");
         dispatcher.forward(req,resp);

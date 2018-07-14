@@ -27,7 +27,6 @@ public class LoginController extends HttpServlet {
         if(user!=null && user.getPassword().equals(req.getParameter("password"))){
             HttpSession session = req.getSession();
             session.setAttribute("userLogged",user);
-
             String filtredUrl = (String) session.getAttribute("filtredUrl");
             if (filtredUrl != null) {
                 resp.sendRedirect(filtredUrl);

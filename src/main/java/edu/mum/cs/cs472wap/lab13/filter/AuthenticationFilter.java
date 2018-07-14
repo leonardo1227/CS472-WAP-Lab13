@@ -21,8 +21,6 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
-
-
         if(session!=null && session.getAttribute("userLogged")!=null){
             filterChain.doFilter(request,response);
         }else{

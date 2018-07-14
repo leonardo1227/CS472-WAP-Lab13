@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Random;
 
 @WebServlet(name = "addShoppingCart", urlPatterns = "/addShoppingCart")
 public class AddShoppingCartController extends HttpServlet {
@@ -22,7 +23,9 @@ public class AddShoppingCartController extends HttpServlet {
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
         if (shoppingCart == null) {
             shoppingCart = new ShoppingCart();
-            //shoppingCart.setId(Long.valueOf(session.getId()));
+            Random random = new Random();
+            shoppingCart.setId(random.nextLong());
+            System.out.println(shoppingCart.getId());
         }
         Integer productId = Integer.valueOf(req.getParameter("addButton"));
         Integer productQuantity = Integer.valueOf(req.getParameter("quantity"));
