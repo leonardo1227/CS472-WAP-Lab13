@@ -6,12 +6,14 @@ public class Payment {
     private String cardDueDate;
     private String cardCVC;
     private String cardHolderName;
+    private String cardType;
 
-    public Payment(String cardNumber, String cardDueDate, String cardCVC, String cardHolderName) {
+    public Payment(String cardNumber, String cardDueDate, String cardCVC, String cardHolderName, String cardType) {
         this.cardNumber = cardNumber;
         this.cardDueDate = cardDueDate;
         this.cardCVC = cardCVC;
         this.cardHolderName = cardHolderName;
+        this.cardType = cardType;
     }
 
     public String getCardNumber() {
@@ -44,5 +46,13 @@ public class Payment {
 
     public void setCardHolderName(String cardHolderName) {
         this.cardHolderName = cardHolderName;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
     }
 }

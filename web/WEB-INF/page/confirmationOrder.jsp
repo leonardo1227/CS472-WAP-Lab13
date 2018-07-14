@@ -28,13 +28,18 @@
     </div>
 
     <div id="headerButtons">
-        <a href="shoppingCart"/>ShoppingCart</a>
+        <a href="products" title="Home">
+            <img src="<c:url value='/resource/icon/home.png'/> "/>
+        </a>
+        <a href="shoppingCart" title="Shopping Cart">
+            <img src="<c:url value='/resource/icon/shopping-cart.png'/> ">
+        </a>
+
         <c:choose>
             <c:when test="${userLogged!=null}">
                 <form method="post" action="logout">
                     <button type="submit">Logout</button>
                 </form>
-
             </c:when>
             <c:otherwise>
                 <a href="login">
@@ -43,13 +48,11 @@
             </c:otherwise>
         </c:choose>
     </div>
-
-
 </div>
 <div class="contentPage">
     <h2><c:out value="Order Successfuly Completed"/></h2>
     <p><c:out
-            value="Thank you ${userLogged.name} for buying with us! Complete information about your order following:"/></p>
+            value="Thank you ${userLogged.name} for shopping with us! Complete information about your order following:"/></p>
     <div>
         <fieldset>
             <legend>Shipping Address</legend>
@@ -77,26 +80,29 @@
             <div><label><c:out value="Card CVC: ${order.payment.cardCVC}"/></label></div>
             <div><label><c:out value="Card Due Date: ${order.payment.cardDueDate}"/></label></div>
             <div><label><c:out value="Card Name Holder: ${order.payment.cardHolderName}"/></label></div>
+            <div><label><c:out value="Card Type: ${order.payment.cardType}"/></label></div>
         </fieldset>
     </div>
 
     <div>
         <table id="itemList">
             <tr>
-                <th><c:out value="Product"/></th>
-                <th><c:out value="Quantity"/></th>
-                <th><c:out value="Total Price"/></th>
+                <th class="rowItemList" width="60%"><c:out value="Product"/></th>
+                <th class="rowItemList" width="10%"><c:out value="Quantity"/></th>
+                <th class="rowItemList" width="15%"><c:out value="Unit Price"/></th>
+                <th class="rowItemList" width="15%"><c:out value="Total Price"/></th>
             </tr>
             <c:forEach items="${order.shoppingCart.items}" var="item">
                 <tr>
-                    <td><c:out value="${item.product.description}"/></td>
-                    <td><c:out value="${item.quantity}"/></td>
-                    <td><c:out value="${item.totalPrice}"/></td>
+                    <td class="rowItemList"><c:out value="${item.product.description}"/></td>
+                    <td class="rowItemList numberCellItemList"><c:out value="${item.quantity}"/></td>
+                    <td class="rowItemList priceCellItemList"><c:out value="$ ${item.product.price}"/></td>
+                    <td class="rowItemList priceCellItemList"><c:out value="$ ${item.totalPrice}"/></td>
                 </tr>
             </c:forEach>
             <tr>
                 <th colspan="2"><c:out value="Total Price"/></th>
-                <td colspan="2"><c:out value="${order.shoppingCart.totalPrice}"/></td>
+                <td colspan="2" class="priceCellItemList"><c:out value="${order.shoppingCart.totalPrice}"/></td>
             </tr>
         </table>
     </div>

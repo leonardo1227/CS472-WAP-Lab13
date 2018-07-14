@@ -10,6 +10,7 @@
 <html>
 <head>
     <link href="<c:url value='/resource/css/styles.css'/>" rel="stylesheet"/>
+    <!--<script src="<c:url value='/resource/js/script.js'/>" type="text/javascript"/>-->
     <title>Products</title>
 </head>
 <body>
@@ -29,16 +30,23 @@
     </div>
 
     <div id="headerButtons">
-        <a href="shoppingCart"/>ShoppingCart</a>
+        <a href="products" title="Home">
+            <img src="<c:url value='/resource/icon/home.png'/> "/>
+        </a>
+        <a href="shoppingCart" title="Shopping Cart">
+            <img src="<c:url value='/resource/icon/shopping-cart.png'/> ">
+        </a>
+
         <c:choose>
             <c:when test="${userLogged!=null}">
                 <form method="post" action="logout">
                     <button type="submit">Logout</button>
                 </form>
-
             </c:when>
             <c:otherwise>
-                <a href="login"><button>Login</button></a>
+                <a href="login">
+                    <button>Login</button>
+                </a>
             </c:otherwise>
         </c:choose>
     </div>
@@ -49,7 +57,8 @@
     <c:forEach items="${productList}" var="product">
         <form method="post" action="addShoppingCart">
             <div class="product">
-                <img src="lab13/${product.value.picture}"/>
+                <!--<img src="<c:url value='${product.value.picture}'/>">-->
+                <img src="<c:url value='${pageContext.servletContext.contextPath}/${product.value.picture}'/>">
 
                 <div>
                     <c:out value="${product.value.description}"/>
@@ -61,7 +70,8 @@
                 </div>
                 <div>
                     <label>Quantity:</label>
-                    <select name="quantity">
+                    <select name="quantity" required>
+                        <option disabled selected>Select</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -70,7 +80,7 @@
                     </select>
                 </div>
                 <div>
-                    <button type="submit" value="${product.value.id}" name="addButton">Add to Shopping Cart</button>
+                    <button type="submit" value="${product.value.id}" name="addButton">Add to the Shopping Cart</button>
                 </div>
             </div>
         </form>

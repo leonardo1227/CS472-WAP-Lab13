@@ -22,9 +22,11 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
 
+
         if(session!=null && session.getAttribute("userLogged")!=null){
             filterChain.doFilter(request,response);
         }else{
+            session.setAttribute("filtredUrl",request.getRequestURL().toString());
             response.sendRedirect(request.getContextPath()+"/login");
         }
     }

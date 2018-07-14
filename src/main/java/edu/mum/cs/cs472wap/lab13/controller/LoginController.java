@@ -27,9 +27,13 @@ public class LoginController extends HttpServlet {
         if(user!=null && user.getPassword().equals(req.getParameter("password"))){
             HttpSession session = req.getSession();
             session.setAttribute("userLogged",user);
-            //RequestDispatcher dispatcher = req.getRequestDispatcher("/products");
-            //dispatcher.forward(req,resp);
-            resp.sendRedirect(req.getContextPath()+"/products");
+
+            String filtredUrl = (String) session.getAttribute("filtredUrl");
+            if (filtredUrl != null) {
+                resp.sendRedirect(filtredUrl);
+            }else{
+                resp.sendRedirect(req.getContextPath()+"/products");
+            }
         }else{
             resp.sendRedirect(req.getContextPath()+"/login");
         }

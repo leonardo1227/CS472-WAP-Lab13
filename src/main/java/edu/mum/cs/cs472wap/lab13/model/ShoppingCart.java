@@ -5,28 +5,19 @@ import java.util.List;
 
 public class ShoppingCart {
 
-    private Integer id;
-    private Double totalPrice;
+    private Long id;
     private List<ShoppingCartItem> items;
 
     public ShoppingCart() {
         this.items = new ArrayList<>();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public List<ShoppingCartItem> getItems() {
@@ -35,5 +26,9 @@ public class ShoppingCart {
 
     public void setItems(List<ShoppingCartItem> items) {
         this.items = items;
+    }
+
+    public Double getTotalPrice(){
+        return items.stream().map(x -> x.getTotalPrice()).reduce(0.0,Double::sum);
     }
 }

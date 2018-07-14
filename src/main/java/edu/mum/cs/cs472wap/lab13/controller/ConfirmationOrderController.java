@@ -35,10 +35,18 @@ public class ConfirmationOrderController extends HttpServlet {
                 req.getParameter("billingState"),
                 req.getParameter("billingZipcode"));
 
+        /*Payment payment = new Payment(req.getParameter("cardNumber"),
+                req.getParameter("cardCVNumber"),
+                req.getParameter("cardDueDate"),
+                req.getParameter("cardHolderName"),
+                req.getParameter("cardType"));*/
         Payment payment = new Payment(req.getParameter("cardNumber"),
                 req.getParameter("cardDueDate"),
                 req.getParameter("cardCVC"),
-                req.getParameter("cardHolderName"));
+                req.getParameter("cardHolderName"),
+                req.getParameter("cardType"));
+
+
         order.setShippingAddress(shippingAddress);
         order.setBillingAddress(billingAddress);
         order.setPayment(payment);

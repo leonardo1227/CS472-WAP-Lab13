@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "removeShoppingCartController", urlPatterns = "/removeShoppingCart")
 public class RemoveShoppingCartController extends HttpServlet {
@@ -19,17 +20,10 @@ public class RemoveShoppingCartController extends HttpServlet {
         HttpSession session = req.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
         ShoppingCartItem item = new ShoppingCartItem(Integer.valueOf(req.getParameter("removeButton")));
-        for(ShoppingCartItem i:shoppingCart.getItems()){
-            if(i.getId()==item.getId()){
-                item = i;
-            }
-        }
-        shoppingCart.getItems().remove(item);
-        shoppingCart.setTotalPrice(shoppingCart.getItems().stream()
-                .map(x -> x.getTotalPrice())
-                .reduce(0.0,Double::sum));
-        session.setAttribute("shoppingCart",shoppingCart);
-
-        resp.sendRedirect(req.getContextPath()+"/shoppingCart");
+        shoppingCart.setItems(shoppingCart.getItems().stream()
+                .filter(x -> x.getId() != item.getId())
+                .collect(Collectors.toList()));
+        session.setAttribute("shoppingCart", shoppingCart);
+        resp.sendRedirect(req.getContextPath() + "/shoppingCart");
     }
 }

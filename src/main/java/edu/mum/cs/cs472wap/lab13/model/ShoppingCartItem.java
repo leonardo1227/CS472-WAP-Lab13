@@ -5,7 +5,6 @@ public class ShoppingCartItem {
     private Integer id;
     private Product product;
     private Integer quantity;
-    private Double totalPrice;
     private ShoppingCart shoppingCart;
 
     public ShoppingCartItem(Integer id) {
@@ -16,7 +15,6 @@ public class ShoppingCartItem {
         this.id = id;
         this.product = product;
         this.quantity = quantity;
-        this.totalPrice = this.product.getPrice()*this.getQuantity();
         this.shoppingCart = shoppingCart;
     }
 
@@ -44,19 +42,15 @@ public class ShoppingCartItem {
         this.quantity = quantity;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    public Double getTotalPrice(){
+        return this.quantity*this.product.getPrice();
     }
 }
