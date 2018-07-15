@@ -25,7 +25,6 @@ public class AddShoppingCartController extends HttpServlet {
             shoppingCart = new ShoppingCart();
             Random random = new Random();
             shoppingCart.setId(random.nextLong());
-            System.out.println(shoppingCart.getId());
         }
         Integer productId = Integer.valueOf(req.getParameter("addButton"));
         Integer productQuantity = Integer.valueOf(req.getParameter("quantity"));
